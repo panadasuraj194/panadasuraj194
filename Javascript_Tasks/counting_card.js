@@ -2,17 +2,36 @@ let count = 0;
 
 function cc(card) {
   // Only change code below this line
-  let regex = /[JQKA]/;
-  if(card >=2 && card <=6){
-    return count++;
-  } else if(card === 10 || regex.test(card)){
-  count--;
+  switch(card){
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+  case 6:
+  count += 1;
+  break;
+  case 7:
+  case 8:
+  case 9:
+  count += 0;
+  break;
+  case :
+  case 10:
+  case 'J':
+  case 'Q':
+  case 'K':
+  case 'A':
+  count -= 1;
+  break;
   }
+  let actions = "";
   if(count>0){
-    return count + "Bet";
+    actions = count + "Bet";
   }else{
-    return count + "Hold";
+    actions = count + "Hold";
   }
+  
+  return `${count} ${actions}`;	
   // Only change code above this line
 }
 
