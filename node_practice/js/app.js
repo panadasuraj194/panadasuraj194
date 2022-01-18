@@ -282,15 +282,49 @@
 
 /* Promise.any() */
 
-const first = new Promise((resolve, reject) => {
-    setTimeout(reject, 500, 'first')
-  })
-  const second = new Promise((resolve, reject) => {
-    setTimeout(reject, 100, 'second')
-  })
+// const first = new Promise((resolve, reject) => {
+//     setTimeout(reject, 500, 'first')
+//   })
+//   const second = new Promise((resolve, reject) => {
+//     setTimeout(reject, 100, 'second')
+//   })
   
-  Promise.any([first, second]).catch(error => {
-    console.log(error) // AggregateError
-  })
+//   Promise.any([first, second]).catch(error => {
+//     console.log(error) // AggregateError
+//   })
 
+  /*  Async and Await */
+
+  // const doSomethingAsync = () => {
+  //   return new Promise(resolve => {
+  //     setTimeout(() => resolve('I did something'), 3000)
+  //   })
+  // }
+
+  // const doSomething = async () => {
+  // console.log(await doSomethingAsync())
+  // }
+  // console.log('Before')
+  // doSomething()
+  // console.log('After')
+
+  // const aFunction = async () => {
+  //   return 'test'
+  // }
+  // aFunction().then(console.log) 
+
+  /* Same As */
+
+  // const aFunction = () => {
+  //   return Promise.resolve('test')
+  // }
   
+  // aFunction().then(console.log) ;
+
+  const getData = () =>{
+    return fetch('../testFolder/test.json')
+    .then(response => response.json())
+    .then(id)
+    .then(userResponse => userResponse.json())
+  }
+  getData()
