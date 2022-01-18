@@ -1,0 +1,15 @@
+const xhr = new XMLHttpRequest();
+            ^
+
+ReferenceError: XMLHttpRequest is not defined
+    at Object.<anonymous> (/home/suraj/External_DATA/practice/node_practice/js/app.js:151:13)
+-----------------------------------------------------------------
+const f1 = fetch('/testFolder/test.json');
+           ^
+
+ReferenceError: fetch is not defined
+    at Object.<anonymous> (/home/suraj/External_DATA/practice/node_practice/js/app.js:255:12)
+    
+----------------------------------------------------------------
+
+
