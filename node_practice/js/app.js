@@ -3,6 +3,8 @@
 // const hobby = [{'indoor':'carrom'},{'outdoor':'cricket'}];
 // console.log(`my name  is ${username}. My fav indoor game is ${hobby[0]['indoor']} and outdoor game is ${hobby[1]['outdoor']}`);
 
+const { response } = require("express");
+
 /* console.count() */
 
 // const x = 1
@@ -321,10 +323,46 @@
   
   // aFunction().then(console.log) ;
 
-  const getData = () =>{
-    return fetch('../testFolder/test.json')
-    .then(response => response.json())
-    .then(id)
-    .then(userResponse => userResponse.json())
-  }
-  getData()
+  /* Function using Promises */
+  // const getData = () =>{
+  //   return fetch('../testFolder/test.json')
+  //   .then(response => response.json())
+  //   .then(id)
+  //   .then(userResponse => userResponse.json())
+  // }
+  // getData()
+
+  /* Function using Async and await */
+
+  // const getData = async () =>{
+  //   const res = await fetch('https://dummyjson.com/products');
+  //   const products = await res.json();
+  //   const product = products[0];
+  //   const productRes = await fetch(`/products/${product.title}`);
+  //   const productData = await productRes.json()
+  //   return productData
+  // }
+
+  // getData()
+
+  /* Multiple async functions in series */
+
+  const promiseToDoSomething = () =>{
+    return new Promise(resolve => {
+      setTimout(() => { 'I did something'},10000)
+    }) ;
+  };
+
+  const watchOverSomeoneDoingSomething = async () => {
+    const something = await promiseToDoSomething()
+    return something + '\nand I  watchd';
+  };
+
+  const watchOverSomeoneWatchingSomeoneDoingSomething = async () => {
+    const something = await watchOverSomeoneDoingSomething()
+    return something + '\nand I watched as well'
+  };
+  
+  watchOverSomeoneWatchingSomeoneDoingSomething().then(res => {
+    console.log(res);
+  });

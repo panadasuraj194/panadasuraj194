@@ -12,4 +12,5 @@ ReferenceError: fetch is not defined
     
 ----------------------------------------------------------------
 
-
+(node:6181) UnhandledPromiseRejectionWarning: ReferenceError: setTimout is not defined
+    at /home/suraj/External_DATA/Local_GitHub/node_practice/js/app.js:352:7
