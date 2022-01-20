@@ -1,0 +1,26 @@
+The HTTP core module is a key module to Node.js networking.
+
+var http = require('http');
+
+--------------------------------------------------------------------
+
+HTTP Properties and Methods:
+
+http.METHODS:	This property lists all the HTTP methods supported
+http.STATUS_CODES: This property lists all the HTTP status codes and their description:
+http.globalAgent: 	Returns the HTTP Agent
+http.createServer(): 	Creates an HTTP server
+http.get(): 	Sets the method to GET, and returns an object containing the user's request
+http.request(): 	Returns an object containing the user's request
+
+The HTTP module provides 5 classes:
+
+    http.Agent:	creates a global instance of the http.Agent class to manage connections persistence and reuse for HTTP clients, a key component of Node.js HTTP networking.
+    http.ClientRequest:	object is created when http.request() or http.get() is called
+    http.Server: This class is commonly instantiated and returned when creating a new server using http.createServer().
+    http.ServerResponse: Created by an http.Server and passed as the second parameter to the request event it fires.
+    http.IncomingMessage: An http.IncomingMessage object is created by:
+
+    http.Server when listening to the request event
+    http.ClientRequest when listening to the response event
+

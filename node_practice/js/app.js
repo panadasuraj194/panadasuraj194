@@ -583,12 +583,201 @@ const { path } = require("express/lib/application");
 // fs.writeFile('../testFolder/test.txt', content, { flag: 'a+' }, err => {})
 
 /* Append to a file */
-const fs = require('fs');
-const content = "Appended text";
-fs.appendFile('../testFolder/test.txt', content, err =>{
-  if(err){
-    console.error(err);
-    return
-  }
+// const fs = require('fs');
+// const content = "Appended text";
+// fs.appendFile('../testFolder/test.txt', content, err =>{
+//   if(err){
+//     console.error(err);
+//     return
+//   }
 
-})
+// });
+/* Working with folders in Node.js */
+
+// const fs = require('fs');
+// const folderName = '../testFolder/SubFolder';
+
+// try{
+//   if(!fs.existsSync(folderName)){
+//     fs.mkdirSync(folderName);
+//     console.log('Folder is created.');
+
+//   }else{
+//     console.log('Already Exists.');
+//   }
+// } catch (err){
+//   console.error(err);
+// }
+
+/* Read the content of a directory */
+
+// const fs = require('fs');
+// const pathName = require('path');
+// const folderPath = '../testFolder';
+// // console.log(fs.readdirSync(folderPath));
+
+// // You can get the full path: 
+// let show = fs.readdirSync(folderPath).map(fileName => { 
+//   return pathName.join(folderPath, fileName);
+// });
+// console.log(show);
+
+// filter the results to only return the files, and exclude the folders: 
+
+// const isFile = fileName => {
+//   return fs.lstatSync(fileName).isFile();
+// }
+// let show = 
+// fs.readdirSync(folderPath).map(fileName => {
+//   return pathName.join(folderPath, fileName)
+// })
+// .filter(isFile);
+
+// console.log(isFile);
+
+/* Rename Folder */
+// fs.renameSync('../testFolder/Sub-Folder','../testFolder/SubFolder', err => {
+//   if (err){
+//     console.error(err);
+//     return
+//   }
+// });
+
+/* Remove Folder */
+// const dir = "../testFolder/subFolder";
+// fs.rmdir()
+
+// fs.rmdir(dir, {recursive:true}, (err) =>{
+//   if(err){
+//     throw err;
+//   }
+//   console.log(`${dir} is deleted!`);
+// });
+// fs.rm()
+
+// fs.rm(dir, {recursive:true}, (err) =>{
+//   if(err){
+//     throw err;
+//   }
+//   console.log(`${dir} is deleted!`);
+// });
+
+/* using fs-extra library */
+// const fs = require('fs-extra');
+
+// const dir = '../testFolder/subFolder';
+
+// fs.remove(dir, err => {
+//   console.error(err);
+// });
+
+/* using fs-extra library using Promise */
+// const dir = '../testFolder/subFolder';
+// fs.remove(dir)
+// .then(() => {
+//   console.log(`${dir} is deleted!`);
+// })
+// .catch(err =>{
+//   console.error(err);
+// })
+
+/* using fs-extra library using with async/await: */
+
+// async function removeDir(dir){
+//   try{
+//     await fs.remove(dir)
+//     console.log(`${dir} is deleted!`);
+//   } catch (err){
+//     console.error(err);
+//   }
+// }
+// const dir = '../testFolder/subFolder1';
+// removeDir(dir);
+// =======================================================
+/* 'path' Module */
+const PATH = require('path');
+const dir = '../testFolder/test.txt';
+const folderName = 'users';
+// console.log(PATH.basename(dir));  //test.txt 
+// console.log(PATH.delimiter);   // ;(windows) :(Linux/MacOS)
+// console.log(PATH.dirname(dir));    //../testFolder
+// console.log(PATH.extname(dir));   //.txt
+// console.log(PATH.format({dir:'../testFolder', base:'test.txt'}));    //../testFolder/test.txt
+// console.log(PATH.format({root:'../testFolder', name:'test', ext:'.txt'}));    //../testFoldertest.txt
+// console.log(PATH.isAbsolute(dir)); // false {false if './' , true if '/'}
+// console.log(PATH.join('/', 'users', folderName, 'test1.txt'));  ///users/users/test1.txt
+// console.log(PATH.normalize('/users/joe/..//test1.txt'));  ///users/test1.txt
+// console.log(PATH.parse('/users/test.txt'));    //{root: '/', dir: '/users', base: 'test.txt', ext: '.txt', name: 'test'}
+// console.log(PATH.posix);
+// console.log(PATH.relative('/Users/joe', '/Users/joe/test.txt'));  //'test.txt'
+// console.log(PATH.relative('/Users/joe', '/Users/joe/something/test.txt'));  //'something/test.txt'
+
+// console.log(PATH.resolve('tmp', 'joe.txt'));    // '/tmp/joe.txt'
+// console.log(PATH.sep);
+// console.log(PATH.win32);
+
+// =======================================================
+
+/* 'os' Module */
+
+// const OS = require('os');
+
+// console.log(OS.arch());
+// console.log(OS.constants);
+// console.log(OS.cpus());
+// console.log(OS.endianness());
+// console.log(OS.EOL);
+// console.log(OS.freemem());
+// console.log(OS.hostname());
+// console.log(OS.loadavg());
+// console.log(OS.networkInterfaces());
+// console.log(OS.platform());
+// console.log(OS.release());
+// console.log(OS.tmpdir());
+// console.log(OS.totalmem());
+// console.log(OS.type());
+// console.log(OS.uptime());
+// console.log(OS.userInfo());
+// =====================================================
+
+/* 'events' Module */ 
+
+// const EventEmitter = require('events');
+// const eventEmitter = new EventEmitter();
+// eventEmitter.on('scream', function() {
+//   console.log('A scream is detected!');
+// });
+// eventEmitter.emit('scream');
+// //.................
+// eventEmitter.off('scream', function() {
+//   console.log('A scream is removed!');
+// });
+// eventEmitter.emit('scream');
+// //.................
+// eventEmitter.addListener('Listenerscream', function() {
+//   console.log('A Listenerscream is detected!');
+// });
+// eventEmitter.emit('Listenerscream');
+// //.................
+// eventEmitter.removeListener('Listenerscream', function() {
+//   console.log('A Listenerscream is removed!');
+// });
+// //.................
+eventEmitter.once('my-event', () => {
+  console.log('A MyEvents ');
+});
+
+  eventEmitter.emit('my-event'); 
+  eventEmitter.emit('my-event');
+// //.................
+  // eventEmitter.emit('Listenerscream')
+  // console.log(eventEmitter.eventNames());  // 'scream'
+  // console.log(eventEmitter.defaultMaxListeners);  //  10
+  // console.log(eventEmitter.getMaxListeners());   // Default: 10
+  // console.log(eventEmitter.listenerCount('scream')); //  1
+  // console.log(eventEmitter.listeners('scream'));  //A scream is detected! [ [Function (anonymous)] ]
+  // console.log(eventEmitter.prependListener());
+  // console.log(eventEmitter.prependOnceListener());
+  // console.log(eventEmitter.removeAllListeners());
+  // console.log(eventEmitter.removeListener());
+  // console.log(eventEmitter.setMaxListeners(50));
