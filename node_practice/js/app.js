@@ -3,7 +3,9 @@
 // const hobby = [{'indoor':'carrom'},{'outdoor':'cricket'}];
 // console.log(`my name  is ${username}. My fav indoor game is ${hobby[0]['indoor']} and outdoor game is ${hobby[1]['outdoor']}`);
 
-const { response } = require("express");
+const { path } = require("express/lib/application");
+
+// const { response } = require("express");
 
 /* console.count() */
 
@@ -29,7 +31,7 @@ const { response } = require("express");
 // const function1 = () => function2()
 // function1()
 
-/* Measureing time */
+/* Measuring time */
 
 // const doSomething = (a, b) => {return a+b};
 // const doSomething1 = (a, b) => {return a*b};
@@ -347,22 +349,246 @@ const { response } = require("express");
 
   /* Multiple async functions in series */
 
-  const promiseToDoSomething = () =>{
-    return new Promise(resolve => {
-      setTimout(() => { 'I did something'},10000)
-    }) ;
-  };
+  // const promiseToDoSomething = () =>{
+  //   return new Promise(resolve => {
+  //     setTimeout(() => { 'I did something'},10000)
+  //   }) ;
+  // };
 
-  const watchOverSomeoneDoingSomething = async () => {
-    const something = await promiseToDoSomething()
-    return something + '\nand I  watchd';
-  };
+  // const watchOverSomeoneDoingSomething = async () => {
+  //   const something = await promiseToDoSomething()
+  //   return something + '\nand I  watchd';
+  // };
 
-  const watchOverSomeoneWatchingSomeoneDoingSomething = async () => {
-    const something = await watchOverSomeoneDoingSomething()
-    return something + '\nand I watched as well'
-  };
+  // const watchOverSomeoneWatchingSomeoneDoingSomething = async () => {
+  //   const something = await watchOverSomeoneDoingSomething()
+  //   return something + '\nand I watched as well'
+  // };
   
-  watchOverSomeoneWatchingSomeoneDoingSomething().then(res => {
-    console.log(res);
-  });
+  // watchOverSomeoneWatchingSomeoneDoingSomething().then(res => {
+  //   console.log(res);
+  // });
+  
+  /* EventEmitter */
+  
+   // eventEmitter.on('start',() =>{
+  //   console.log('started');
+  // })
+  // eventEmitter.emit('start')
+
+
+  // eventEmitter.on('start', number => {
+  //   console.log(`started ${number}`)
+  // })
+  
+  // eventEmitter.emit('start', 23)
+
+  /* Multiple argument EventEmitter */
+
+  // eventEmitter.on('start', (start, end) => {
+  //   console.log(`started from ${start} to ${end}`)
+  // });
+  
+  // eventEmitter.emit('start', 1, 100);
+
+  /* HTTP web server */
+  // const http = require('http');
+  // const port = process.env.PORT || 3000
+  // const server = http.createServer((req, res) => {
+  //   res.statusCode = 200;
+  //   res.setHeader('Content-Type', 'text/html');
+  //   res.end('<h1>Hello World!</h1>');
+  // });
+
+  // server.listen(port, () => {
+  //   console.log(`Server running at port ${port}`);
+  // });
+
+  /* Making HTTP requests with Node.js */
+
+  // const https = require('https');
+  // const options = {
+  //   hostname: 'localhost',
+  //   port: 443,
+  //   path: '/todos',
+  //   method: 'GET'
+  // }
+  // const req = https.request(options, res => {
+  //   console.log(`statusCode: ${res.statusCode}`);
+
+  //   res.on('data', d => {
+  //     process.stdout.write(d);
+  //   })
+  // })
+
+  // req.on('error', error =>{
+  //   console.error(error)
+  // })
+  // req.end();
+
+  /* HTTP request body data using Node.js in */
+
+  // const axios = require('axios');
+  // axios.post('https://dummyjson.com',{
+  //   aa:'users'
+  // })
+
+  // const express = require('express')
+  // const app = express();
+  // app.use(
+  //   express.urlencoded({
+  //     extended: true
+  //   })
+  // )
+
+  // app.use(express.json());
+  // app.post('/todos',(req,res) =>{
+  //   console.log(req.body.todo)
+  // })
+
+  /* Get HTTP request body data using Node.js */
+  // const https = require('https');
+  // const server = https.createServer((req,res) => {
+  //   let data = "";
+  //   req.on('data', chunk => {
+  //     console.log(`Data chuck available:${chunk}`)
+  //   })
+  //   req.on('end',() => {
+  //     console.log(JSON.parse(data).todo);
+  //     res.end();
+  //   });
+  // });
+
+  /* with for Await of */
+
+  // const https = require('https');
+  // const server = https.createServer(async (req,res) => {
+  //   const buffers = [];
+
+  //   for await (const chunk of req){
+  //     buffers.push(chunk);
+
+  //   }
+  //   const data = Buffer.concat(buffers).toString();
+  //   console.log(JSON.parse(data).todo);
+  //   res.end();
+  // });
+
+  /* Working with file descriptors in Node.js */
+
+  // const fs = require('fs');
+  // fs.open('/testFolder/test.txt', 'r', (err,fd) => {
+  // })
+
+  // const fs = require('fs')
+  // try{
+  //   const fd = fs.openSync('../testFolder/test.txt','r')
+  //   console.log(fd);
+  // } catch (err){
+  //   console.error(err)
+  // }
+
+  /* Node.js file stats */
+// stat() 
+
+  // const fs = require('fs')
+  // fs.stat('../testFolder/test.txt', (err,stats) => {
+  //   if(err){
+  //     console.error(err)
+  //     return
+  //   }
+  // });
+// sync()
+  // const fs = require('fs');
+  // try{
+  //   const stats = fs.statSync('../testFolder/test.txt');
+  //   console.log(stats);
+  // } catch (err){
+  //   console.error(err);
+  // }
+
+  //stats.isFile(),stats.isDirectory(), stats.isSymboliclink(), stats.size
+
+  // const fs = require('fs')
+  // fs.stat('../testFolder/test.txt', (err,stats) =>{
+  //   if(err){
+  //     console.error(err)
+  //     return
+  //   }
+  //   console.log(stats.isFile());
+  //   console.log(stats.isDirectory());
+  //   console.log(stats.isDirectory());
+  //   console.log(stats.isDirectory());
+  //   console.log(stats.isDirectory());
+  //   console.log(stats.isSymbolicLink());
+  //   console.log(stats.size);
+  // });
+
+  /* Node.js File Paths */
+// const path = require('path');
+// const notes = "../testFolder/test.txt";
+// console.log(path.dirname(notes));
+// console.log(path.basename(notes));
+// console.log(path.extname(notes));
+// console.log(path.basename(notes, path.extname(notes)));
+
+//const name = "testFolder";
+// path.join('/', name, 'test.txt');
+//absolute path
+// path.resolve('test.txt');
+// when it contains relative specifiers like . or .., or double slashes
+// path.normalize('../testFolder/test.txt');
+
+/* Reading files with Node.js */
+// const fs = require('fs');
+// fs.readFile('../testFolder/test.txt', 'utf8', (err,data) => {
+//   if(err){
+//     console.error(err)
+//     return
+//   }
+//   console.log(data)
+// });
+/* Read File Synchronously */ 
+
+// const fs = require('fs');
+// try{
+//   const data = fs.readFileSync('../testFolder/test.txt', 'utf8');
+//   console.log(data);
+// } catch (err){
+//   console.error(err);
+// }
+
+ /* Writing files with Node.js  */
+
+//  const fs = require('fs')
+//  const content = "Some content!";
+//  fs.writeFile('../testFolder/test.txt', content, err => {
+//    if(err){
+//      console.error(err);
+//      return ;
+//    }
+
+//  });
+
+//Write File Synchronously
+
+// const fs = require('fs');
+// const content = 'Some content!! synchronously';
+// try{
+//   fs.writeFileSync('../testFolder/test.txt', content)
+// } catch(err){
+//   console.error(err);
+// }
+
+// fs.writeFile('../testFolder/test.txt', content, { flag: 'a+' }, err => {})
+
+/* Append to a file */
+const fs = require('fs');
+const content = "Appended text";
+fs.appendFile('../testFolder/test.txt', content, err =>{
+  if(err){
+    console.error(err);
+    return
+  }
+
+})
