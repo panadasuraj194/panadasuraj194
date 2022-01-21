@@ -4,6 +4,7 @@
 // console.log(`my name  is ${username}. My fav indoor game is ${hobby[0]['indoor']} and outdoor game is ${hobby[1]['outdoor']}`);
 
 const { path } = require("express/lib/application");
+const { contentDisposition } = require("express/lib/utils");
 
 // const { response } = require("express");
 
@@ -695,9 +696,9 @@ const { path } = require("express/lib/application");
 // removeDir(dir);
 // =======================================================
 /* 'path' Module */
-const PATH = require('path');
-const dir = '../testFolder/test.txt';
-const folderName = 'users';
+// const PATH = require('path');
+// const dir = '../testFolder/test.txt';
+// const folderName = 'users';
 // console.log(PATH.basename(dir));  //test.txt 
 // console.log(PATH.delimiter);   // ;(windows) :(Linux/MacOS)
 // console.log(PATH.dirname(dir));    //../testFolder
@@ -763,12 +764,12 @@ const folderName = 'users';
 //   console.log('A Listenerscream is removed!');
 // });
 // //.................
-eventEmitter.once('my-event', () => {
-  console.log('A MyEvents ');
-});
+// eventEmitter.once('my-event', () => {
+//   console.log('A MyEvents ');
+// });
 
-  eventEmitter.emit('my-event'); 
-  eventEmitter.emit('my-event');
+//   eventEmitter.emit('my-event'); 
+//   eventEmitter.emit('my-event');
 // //.................
   // eventEmitter.emit('Listenerscream')
   // console.log(eventEmitter.eventNames());  // 'scream'
@@ -781,3 +782,85 @@ eventEmitter.once('my-event', () => {
   // console.log(eventEmitter.removeAllListeners());
   // console.log(eventEmitter.removeListener());
   // console.log(eventEmitter.setMaxListeners(50));
+
+
+  /* Buffer */
+const bufFrm = Buffer.from('Hey!');
+// console.log(bufFrm[0]);
+// console.log(bufFrm[1]);
+// console.log(bufFrm[2]);
+// console.log(bufFrm.toString());
+// console.log(bufFrm.length);
+//bufFrm[1] = 111;
+//console.log(bufFrm.toString());
+//  //.......................
+//Iteration on Buffer:
+// for(const item of bufFrm){
+//   console.log(item);
+// }
+//  //..........................
+// bufFrm.subarray(0).toString();
+// const slice = bufFrm.subarray(0,2);
+// console.log(slice.toString());
+//  //..........................
+// const bufFrmCopy = Buffer.alloc(4);
+// console.log(bufFrmCopy.set(bufFrm));
+// console.log(bufFrm);
+// console.log(bufFrmCopy);
+//  //..........................
+// const bufFrmCopy1 = Buffer.from('Moo!');
+// bufFrmCopy1.set(bufFrm.subarray(1,3), 1)
+// console.log(bufFrmCopy1.toString());
+//  //..........................
+// const bufAl = Buffer.alloc(4);
+// console.log(bufAl.write('Hey!'));
+//  //..........................
+/* example of a stream */
+
+const HTTP = require('http');
+const FS = require('fs');
+const PATH = require('path');
+const stream = require('stream');
+// const server = HTTP.createServer((req,res) => {
+//   FS.readFile(PATH.join(__dirname, '../testFolder/test.txt'), (err, data)=>{
+//     res.end(data);
+//   });
+// });
+// server.listen(3000);
+
+// const server = HTTP.createServer((req,res) => {
+//   const stream = FS.createReadStream(PATH.join(__dirname, '../testFolder/test.txt'), (err, data) => {
+//     stream.pipe(res);
+//   });
+// });
+// server.listen(3000);
+/* read from  stream */
+
+// const readableStream = new stream.Readable({
+//   read () {}
+// });
+// readableStream.push('Hi!!!');
+
+// const writeableStream = new stream.Writeable();
+// writeableStream._write = (chunk, encoding, next) => {
+//   console.log(chunk.toString());
+//   next();
+// }
+
+// readableStream.pipe(writeableStream);
+// readableStream.push('HI');
+
+// readableStream.on('close', () => writeableStream.end());
+// readableStream.on('close', () => console.log('ended'));
+
+// readableStream.destroy();
+
+/* WebAssembly */
+
+const fs = require('fs');
+const wasmBuffer = fs.readFileSync('../wasm/add.wasm');
+WebAssembly.instantiate(wasmBuffer).then(wasmModule => {
+  const add = wasmModule.instance.exports.add;
+  const sum = add(5,6);
+  console.log(sum);
+});
