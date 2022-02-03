@@ -1,0 +1,11 @@
+identifier: k2zc7cb251f1u749
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: BlogApp
+homeFolder: /home/suraj/External_DATA/Local_GitHub/fullStack/frontend/BlogApp
+distFolder: dist/blog-app
+outDir: /home/suraj/External_DATA/Local_GitHub/fullStack/frontend/BlogApp/dist/static
+handle404: ''
+allowErrorCollect: false
